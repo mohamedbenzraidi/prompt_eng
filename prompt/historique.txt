@@ -1,0 +1,174 @@
+# Historique des Prompts - TP Génération de Code avec IA
+
+## Exercice 2.1 : Fonction calculate
+
+### Prompt Vague
+```
+Écris une fonction pour faire des opérations entre deux nombres en Python.
+```
+
+### Prompt Spécifique
+```
+Écris une fonction Python appelée calculate(a, b, op) qui prend deux entiers a et b, et une chaîne op indiquant '+', '-', '*', ou '/'. La fonction doit retourner le résultat de l'opération, gérer les erreurs (division par zéro, opération invalide) et arrondir le résultat de la division à deux décimales. Ajoute un docstring détaillé et des commentaires.
+```
+
+### Prompt avec Persona
+```
+En tant que développeur Python, écris une fonction calculate(a, b, op) qui prend deux entiers et une chaîne représentant une opération mathématique ('+', '-', '*', '/'). La fonction doit être robuste, bien documentée, gérer les erreurs (division par zéro, opérateur invalide), arrondir les divisions à deux décimales, et respecter les conventions PEP8. Inclue un docstring et des commentaires clairs.
+```
+
+### Prompt pour Tests
+```
+Génère 3-4 tests unitaires pytest pour la fonction calculate. Inclue des tests pour les cas normaux, les erreurs (division par zéro, opération invalide) et les types invalides.
+```
+
+---
+
+## Exercice 2.2 : Fonction format_product_code
+
+### Prompt Zero-Shot
+```
+Crée une fonction Python format_product_code(product_id). Le product_id doit être une chaîne de 10 caractères alphanumériques. La fonction doit insérer un tiret après le 3ème et le 7ème caractère. Si la chaîne n'a pas 10 caractères ou contient des caractères non alphanumériques, elle doit lever une ValueError. Inclue un docstring.
+```
+
+### Prompt One-Shot
+```
+Crée une fonction Python format_product_code(product_id). Le product_id doit être une chaîne de 10 caractères alphanumériques. Voici un exemple d'entrée-sortie:
+format_product_code("ABC123DEF4") devrait retourner "ABC-123-DEF4". La fonction doit lever une ValueError si l'entrée est invalide. Inclue un docstring.
+```
+
+### Prompt Few-Shot
+```
+Crée une fonction Python format_product_code(product_id). Le product_id doit être une chaîne de 10 caractères alphanumériques. Voici des exemples d'entrée-sortie:
+format_product_code("ABC123DEF4") devrait retourner "ABC-123-DEF4"
+format_product_code("XYZ987GHIJ") devrait retourner "XYZ-987-GHIJ"
+format_product_code("SHORT") devrait lever une ValueError
+La fonction doit lever une ValueError si l'entrée est invalide. Inclue un docstring.
+```
+
+### Prompt pour Tests
+```
+Génère des tests unitaires pytest pour format_product_code. Teste les cas valides, les longueurs invalides, les caractères invalides et les types invalides.
+```
+
+---
+
+## Exercice 2.3 : Mini-application Calculatrice
+
+### Prompt Vague
+```
+Crée une calculatrice simple en HTML/CSS/JS.
+```
+
+### Prompt Détaillé
+```
+Crée une mini-application Web calculatrice en HTML/CSS/JS avec les spécifications suivantes:
+- Interface moderne avec design glassmorphism
+- Boutons pour chiffres 0-9, opérations +, -, *, /
+- Boutons Clear (C), Clear Entry (CE), Delete (⌫)
+- Écran d'affichage avec historique des opérations
+- Gestion des erreurs (division par zéro)
+- Support du clavier
+- Design responsive
+- Animations CSS sur les boutons
+- Validation des entrées
+- Arrondi des résultats à 5 décimales maximum
+```
+
+---
+
+## Exercice 3.1 : Débogage assisté
+
+### Prompt de Débogage
+```
+J'ai ce code Python qui génère une erreur TypeError. Peux-tu identifier la cause de l'erreur et proposer une correction avec gestion d'erreurs robuste ?
+
+Code:
+def calculate_average(numbers_list):
+    # This function calculates the average of numbers in a list
+    # It has some issues
+    total = 0
+    for num in numbers_list:
+        total += num
+    average = total / len(numbers_list)
+    return average
+
+# Example of usage (might cause errors)
+my_nums = [1, 2, 'three', 4] # <-- Error here
+avg = calculate_average(my_nums)
+print(f"Average: {avg}")
+
+Erreur obtenue: TypeError: unsupported operand type(s) for +=: 'int' and 'str'
+```
+
+### Prompt pour Tests de Débogage
+```
+Génère des tests unitaires pytest pour la fonction calculate_average corrigée. Inclue des tests pour les cas valides, liste vide, types invalides et valeurs None.
+```
+
+---
+
+## Exercice 3.2 : Refactoring
+
+### Prompt de Refactoring
+```
+Refactorise ce code Python qui trie une liste d'entiers. Le code fonctionne mais il est mal structuré et peu lisible. Applique les contraintes suivantes:
+- Suivre la convention PEP8
+- Ajouter des docstrings détaillés
+- Séparer en fonctions modulaires
+- Utiliser des noms explicites pour variables et fonctions
+- Ajouter un bloc if __name__ == "__main__"
+- Inclure la gestion d'erreurs
+- Ajouter des tests unitaires
+
+Code à refactoriser:
+# code de départ
+a = [5, 3, 8, 6, 7, 2]
+for i in range(len(a)):
+    for j in range(i+1, len(a)):
+        if a[i] > a[j]:
+            tmp = a[i]
+            a[i] = a[j]
+            a[j] = tmp
+print(a)
+```
+
+---
+
+## Exercice 3.3 : Génération de Documentation
+
+### Prompt pour Docstring
+```
+Génère un docstring complet et conforme aux standards Python pour cette fonction. Le docstring doit décrire le but de la fonction, ses arguments (user_id, system_context), sa valeur de retour, et inclure un exemple d'utilisation avec le format attendu pour system_context.
+
+def get_user_permissions(user_id, system_context):
+    # This function fetches user permissions
+    # Needs better documentation
+    if user_id in system_context['admins']:
+        return ['read', 'write', 'delete', 'admin']
+    elif user_id in system_context['editors']:
+        return ['read', 'write']
+    else:
+        return ['read']
+```
+
+### Prompt pour Documentation README
+```
+Génère une section Markdown pour le fichier README.md expliquant comment utiliser la fonction get_user_permissions. Inclue:
+- Description de la fonction
+- Format requis pour system_context
+- Exemples d'utilisation avec différents types d'utilisateurs
+- Explication des niveaux de permissions
+- Cas d'usage typiques
+```
+
+### Prompt pour Amélioration du Module
+```
+Améliore ce module de gestion des permissions en ajoutant:
+- Validation des types d'entrée avec exceptions appropriées
+- Fonctions utilitaires (has_permission, get_role_name)
+- Tests unitaires complets
+- Documentation de module
+- Type hints
+- Gestion d'erreurs robuste
+```
